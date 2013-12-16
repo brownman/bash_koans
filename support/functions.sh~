@@ -12,6 +12,13 @@ red() {
 }
 
 
+yellow() {
+  echo -e "\033[33m$1\033[0m"
+
+
+}
+
+
 
 assertEqual() {
   if [[ "$3" != "$4" ]]; then
