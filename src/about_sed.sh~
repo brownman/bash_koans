@@ -1,22 +1,7 @@
 green "sed tool"
 
 
-test_arithmetic_evaluation1() {
-
-  local output=`echo 1+1`
-
-  assertEqual $output '1+1'
-
-  local output2=$((1+1))
-
-  assertEqual $output2 27
-}
-
- 
-
-
-
-test_sed(){
+test_wrap(){
 local input='happy day'
 local pattern='s/h/(&)/g'
 local str=$( echo "$input" | sed "$pattern" )
@@ -24,8 +9,8 @@ local str=$( echo "$input" | sed "$pattern" )
 assertEqual "(h)appy day" "$str"
 }
 
-test_sed_ex1(){
-#- Replace every occurrence of Nick with John in report.txt
+test_replace(){
+#- Replace every occurrence of Nick with John
 local input='nick nick'
 local pattern='s/nick/john/g'
 local str=$( echo "$input" | sed "$pattern" )
@@ -33,8 +18,8 @@ local str=$( echo "$input" | sed "$pattern" )
 assertEqual "john john" "$str"
 }
 
-test_sed_ex2(){
-#- Replace every occurrence of Nick with John in report.txt
+test_capitalized(){
+#- Replace every occurrence of nick/Nick with david
 local input='nick Nick'
 local pattern='s/[nN]ick/david/g'
 local str=$( echo "$input" | sed "$pattern" )
@@ -44,9 +29,9 @@ assertEqual "david david" "$str"
 
 
 
-test_sed_ex3(){
+test_pattern(){
 
-#- Replace every occurrence of Nick with John in report.txt
+
 local input="line1\nline2"
 local file='/tmp/essay'
 #echo "$input" > 
