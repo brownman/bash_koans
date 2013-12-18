@@ -27,20 +27,11 @@ local str=$( echo "$input" | sed "$pattern" )
 assertEqual "david david" "$str"
 }
 
-
-
-test_pattern(){
-
-
-local input="line1\nline2"
-
-
-local pattern='s_^_\t_g'
+test_beggining(){
+local input=" line1 line2"
+local pattern='s_^_a_g'
 local str=$( echo "$input" | sed "$pattern" )
-# sed 's_h_b_g')
-echo -e "$input"
-echo -e "$str"
-assertEqual "\tline\n\tlinei" "$str"
+assertEqual "a line1 line2" "$str"
 }
 
 

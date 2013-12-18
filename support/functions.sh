@@ -11,10 +11,27 @@ red() {
   echo -e "\033[31m$1 $2\033[0m"
   notify-send -t 20000 "$1" "$2"
 }
+clip() {
+echo "$1" | xclip
+local str=$(echo "$1")
+notify-send 'updated_xclip' #"$str"
+}
 
 
 
 assertEqual() {
+local num3=$(echo "$3" | wc -c)
+local num4=$(echo "$4" | wc -c)
+if [ $num3 -gt 100 ];then
+	notify-send 'exid limits'
+return
+fi
+if [ $num4 -gt 100 ];then
+	notify-send 'exid limits'
+return
+fi
+
+
   if [[ "$3" != "$4" ]]; then
     echo ''
     #notify-send ""
